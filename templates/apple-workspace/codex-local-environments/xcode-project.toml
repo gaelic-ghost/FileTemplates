@@ -1,0 +1,22 @@
+# Copy to .codex/environments/xcode-project.toml and replace SCHEME_NAME.
+# Use the selected Xcode toolchain and its configured build locations.
+version = 1
+name = "xcode-project"
+
+[setup]
+script = "xcodebuild -scheme SCHEME_NAME -resolvePackageDependencies"
+
+[[actions]]
+name = "resolve packages"
+icon = "tool"
+command = "xcodebuild -scheme SCHEME_NAME -resolvePackageDependencies"
+
+[[actions]]
+name = "build"
+icon = "tool"
+command = "xcodebuild -scheme SCHEME_NAME build"
+
+[[actions]]
+name = "test"
+icon = "tool"
+command = "xcodebuild -scheme SCHEME_NAME test"

@@ -44,9 +44,10 @@ The `installer/` directory is the skill-facing entrypoint. `shared/`, `runtime/`
 
 ## Apple Workspace and Swift Package Scaffolding
 
-Socket's Xcode workspace and `Package.swift` templates are embedded in
-`run-workflow.fsx`; there are no separate canonical scaffold files to copy.
-Keeping the generator intact preserves those templates exactly.
+Socket's canonical multi-component Xcode workspace and `Package.swift`
+templates are embedded in `run-workflow.fsx`. Apple Dev Skills also ships a
+separate standalone XcodeGen SwiftUI app scaffold and Codex local-environment
+configurations. Both source shapes are preserved here.
 
 | Destination | Source skill asset |
 | --- | --- |
@@ -57,6 +58,68 @@ Keeping the generator intact preserves those templates exactly.
 | `templates/apple-workspace/managed-guidance/AGENTS-services.md` | `plugins/apple-dev-skills/skills/bootstrap-xcode-workspace/assets/managed-guidance/AGENTS-services.md` |
 | `templates/apple-workspace/managed-guidance/CONTRIBUTING.md` | `plugins/apple-dev-skills/skills/bootstrap-xcode-workspace/assets/managed-guidance/CONTRIBUTING.md` |
 | `templates/apple-workspace/managed-guidance/pre-commit` | `plugins/apple-dev-skills/skills/bootstrap-xcode-workspace/assets/managed-guidance/pre-commit` |
+| `templates/apple-workspace/codex-local-environments/swift-package.toml` | `plugins/apple-dev-skills/templates/codex-local-environments/swift-package.toml` |
+| `templates/apple-workspace/codex-local-environments/xcode-project.toml` | `plugins/apple-dev-skills/templates/codex-local-environments/xcode-project.toml`, adapted to use configured build locations |
+| `templates/apple-workspace/xcodegen/swiftui-app/project.yml.tmpl` | `plugins/apple-dev-skills/templates/xcodegen/swiftui-app/project.yml.tmpl` |
+| `templates/apple-workspace/xcodegen/swiftui-app/Configurations/App-Debug.xcconfig.tmpl` | `plugins/apple-dev-skills/templates/xcodegen/swiftui-app/Configurations/App-Debug.xcconfig.tmpl` |
+| `templates/apple-workspace/xcodegen/swiftui-app/Configurations/App-Release.xcconfig.tmpl` | `plugins/apple-dev-skills/templates/xcodegen/swiftui-app/Configurations/App-Release.xcconfig.tmpl` |
+| `templates/apple-workspace/xcodegen/swiftui-app/Configurations/App.xcconfig.tmpl` | `plugins/apple-dev-skills/templates/xcodegen/swiftui-app/Configurations/App.xcconfig.tmpl` |
+| `templates/apple-workspace/xcodegen/swiftui-app/Configurations/Shared.xcconfig.tmpl` | `plugins/apple-dev-skills/templates/xcodegen/swiftui-app/Configurations/Shared.xcconfig.tmpl` |
+| `templates/apple-workspace/xcodegen/swiftui-app/Configurations/Tests-Debug.xcconfig.tmpl` | `plugins/apple-dev-skills/templates/xcodegen/swiftui-app/Configurations/Tests-Debug.xcconfig.tmpl` |
+| `templates/apple-workspace/xcodegen/swiftui-app/Configurations/Tests-Release.xcconfig.tmpl` | `plugins/apple-dev-skills/templates/xcodegen/swiftui-app/Configurations/Tests-Release.xcconfig.tmpl` |
+| `templates/apple-workspace/xcodegen/swiftui-app/Configurations/Tests.xcconfig.tmpl` | `plugins/apple-dev-skills/templates/xcodegen/swiftui-app/Configurations/Tests.xcconfig.tmpl` |
+| `templates/apple-workspace/xcodegen/swiftui-app/Sources/Resources/Assets.xcassets/AccentColor.colorset/Contents.json.tmpl` | `plugins/apple-dev-skills/templates/xcodegen/swiftui-app/Sources/Resources/Assets.xcassets/AccentColor.colorset/Contents.json.tmpl` |
+| `templates/apple-workspace/xcodegen/swiftui-app/Sources/Resources/Assets.xcassets/AppIcon.appiconset/Contents.json.tmpl` | `plugins/apple-dev-skills/templates/xcodegen/swiftui-app/Sources/Resources/Assets.xcassets/AppIcon.appiconset/Contents.json.tmpl` |
+| `templates/apple-workspace/xcodegen/swiftui-app/Sources/Resources/Assets.xcassets/Contents.json.tmpl` | `plugins/apple-dev-skills/templates/xcodegen/swiftui-app/Sources/Resources/Assets.xcassets/Contents.json.tmpl` |
+| `templates/apple-workspace/xcodegen/swiftui-app/Sources/Resources/Localizable.xcstrings.tmpl` | `plugins/apple-dev-skills/templates/xcodegen/swiftui-app/Sources/Resources/Localizable.xcstrings.tmpl` |
+| `templates/apple-workspace/xcodegen/swiftui-app/Sources/Support/App.entitlements.tmpl` | `plugins/apple-dev-skills/templates/xcodegen/swiftui-app/Sources/Support/App.entitlements.tmpl` |
+
+## Cloud Deployment
+
+These five files form one fail-closed release and deployment contract. The
+shell adapters intentionally refuse to run until their project-specific seams
+are implemented.
+
+| Destination | Source skill asset |
+| --- | --- |
+| `templates/cloud-deployment/dockerized-service-release/release-container.yml.tmpl` | `plugins/cloud-deployment-skills/skills/dockerized-service-release-deployment-workflow/assets/release-container.yml.tmpl` |
+| `templates/cloud-deployment/dockerized-service-release/deploy-production.yml.tmpl` | `plugins/cloud-deployment-skills/skills/dockerized-service-release-deployment-workflow/assets/deploy-production.yml.tmpl` |
+| `templates/cloud-deployment/dockerized-service-release/release-manifest.json.tmpl` | `plugins/cloud-deployment-skills/skills/dockerized-service-release-deployment-workflow/assets/release-manifest.json.tmpl` |
+| `templates/cloud-deployment/dockerized-service-release/deploy-production-image.sh.tmpl` | `plugins/cloud-deployment-skills/skills/dockerized-service-release-deployment-workflow/assets/deploy-production-image.sh.tmpl` |
+| `templates/cloud-deployment/dockerized-service-release/verify-production-health.sh.tmpl` | `plugins/cloud-deployment-skills/skills/dockerized-service-release-deployment-workflow/assets/verify-production-health.sh.tmpl` |
+
+## Agent Workflow Documents
+
+| Destination | Source skill asset |
+| --- | --- |
+| `templates/agent-workflows/automation-plan.template.md` | `plugins/agent-engineering-skills/skills/design-agent-automation-workflow/references/automation-plan-template.md` |
+| `templates/agent-workflows/eval-plan.template.md` | `plugins/agent-engineering-skills/skills/design-agent-eval-workflow/references/eval-plan-template.md` |
+
+## Model Lab
+
+| Destination | Source skill asset |
+| --- | --- |
+| `templates/model-lab/compare-model-checkpoints/model-comparison-report.template.md` | `plugins/model-lab-skills/skills/compare-model-checkpoints/assets/model-comparison-report.md` |
+| `templates/model-lab/design-model-experiment/experiment-manifest.template.json` | `plugins/model-lab-skills/skills/design-model-experiment/assets/experiment-manifest.json` |
+| `templates/model-lab/evaluate-language-model/eval-cases.template.jsonl` | `plugins/model-lab-skills/skills/evaluate-language-model/assets/eval-cases.jsonl` |
+| `templates/model-lab/evaluate-language-model/evaluation-report.template.md` | `plugins/model-lab-skills/skills/evaluate-language-model/assets/evaluation-report.md` |
+| `templates/model-lab/prepare-language-model-dataset/dataset-card.template.md` | `plugins/model-lab-skills/skills/prepare-language-model-dataset/assets/dataset-card.md` |
+
+## Swift Support Documents
+
+| Destination | Source skill asset |
+| --- | --- |
+| `templates/swift-support/file-header-inventory.template.yaml` | `plugins/apple-dev-skills/skills/structure-swift-sources/references/file-header-inventory.template.yaml` |
+| `templates/swift-support/official-sdk-exception.template.md` | `plugins/server-side-swift/skills/soto-aws-workflow/references/official-sdk-exception.template.md` |
+
+## GitHub Configuration
+
+The funding template is intentionally adapted from its Socket source: inactive
+provider placeholders were removed, while Gale's active usernames were kept.
+
+| Destination | Source |
+| --- | --- |
+| `templates/github/FUNDING.yml` | `plugins/apple-dev-skills/.github/FUNDING.yml`, adapted for reuse |
 
 ## Licenses
 
@@ -71,6 +134,9 @@ Keeping the generator intact preserves those templates exactly.
   and test caches are not source templates and are excluded.
 - The `dotnet-skills` plugin has no `assets/` or `scripts/` payloads. Its
   examples are workflow documentation, not standalone templates.
-- Specialized templates outside the requested scope, such as agent automation,
-  model evaluation, Motion, and server-side Swift exception templates, remain
-  in their owning skills.
+- Worked examples, example prompts, diagnostic references, and plugin artwork
+  remain in their owning skills because they are not blank reusable templates.
+- The Motion project/template/render contract remains in its owning skill
+  because it is an operational safety checklist rather than a project file.
+- Socket-coupled agent-plugin maintenance assets and generator/exporter scripts
+  remain in their owning skills pending a deliberate generic-tooling design.

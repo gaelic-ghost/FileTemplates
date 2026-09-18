@@ -15,10 +15,15 @@ See [CATALOG.md](./CATALOG.md) for the complete source-to-destination inventory.
 
 ```text
 templates/
-├── apple-workspace/          # Swift package and Xcode workspace scaffolding
+├── agent-workflows/          # Agent automation and evaluation plans
+├── apple-workspace/          # Swift package, XcodeGen, and Xcode workspace scaffolding
+├── cloud-deployment/         # Container release and deployment contracts
+├── github/                   # Reusable GitHub repository configuration
 ├── licenses/                 # Apache-2.0 and MIT license text
+├── model-lab/                # Experiment, evaluation, comparison, and dataset records
 ├── repository-documents/     # README, CONTRIBUTING, AGENTS, and ROADMAP templates
-└── repository-maintenance/   # FSX runtime, profiles, and GitHub validation
+├── repository-maintenance/   # FSX runtime, profiles, and GitHub validation
+└── swift-support/            # Focused Swift inventory and exception records
 ```
 
 ## Provenance
